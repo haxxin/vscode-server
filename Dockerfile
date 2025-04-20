@@ -5,6 +5,8 @@
 # 1. github.com:haxxin/win64_docker-examples.git
 #
 
+# TODO(JEFF): Review whether or not we may size this image down further; I
+# believe that debian:12.10-slim could be used, but this needs testing.
 # https://hub.docker.com/_/debian/tags?name=12.10
 FROM debian:12.10
 LABEL maintainer="Jeffrey Carpenter <1329364+i8degrees@users.noreply.github.com>"
