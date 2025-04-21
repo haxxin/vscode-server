@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: "Dockerfile"
-    command: ["tunnel"]
+    command: ["code", "tunnel"]
     restart: unless-stopped
     container_name: vscode-tunnel-1
     volumes:
@@ -28,8 +28,9 @@ services:
       - "./mounts/Projects:/home/code/Projects:ro"
     env_file:
       ".env"
-    networks:
-      - proxy
+      #networks:
+      #- proxy
+    network_mode: host
     #expose:
     # external port:container port
     ports:
@@ -46,14 +47,15 @@ services:
       dockerfile: "Dockerfile"
     #"${VSCODE_EXTERNAL_CODE_WEB_PORT:-8020}"
     # TODO(JEFF): Append ${VSCODE_EXTERNAL_CODE_WEB_HOST} after --host element
-    command: [
-      "serve-web",
-      "--host",
-      "0.0.0.0",
+    #command: [
+    #"serve-web",
+    #"--host",
+    #"0.0.0.0",
       # NOTE(JEFF): This is the container's port
-      "--port",
-      "80"
-    ]
+      #"--port",
+      #"80"
+      #]
+    command: "code serve-web --host 0.0.0.0 --port 80"
     restart: unless-stopped
     container_name: vscode-web-1
     volumes:
@@ -66,9 +68,10 @@ services:
       - "./mounts/Projects:/home/code/Projects:ro"
     env_file:
       ".env"
-    networks:
-      - proxy
+      #networks:
+      #- proxy
     #expose:
+    network_mode: host
     # external port:container port
     ports:
       # NOTE(JEFF): The "command" service attribute specified above is what
