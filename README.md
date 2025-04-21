@@ -121,7 +121,13 @@ docker compose logs --since=24h -f
 
 ##### attach to shell
 
+Once the container is live -- and not restarting due to an error --
+sometimes it is useful to examine the working state of the container
+that you have brought up.
 
+This is often times useful when debugging control flow, filesystem state or even
+when you need to install additional packages (assuming you have privileges 
+setup to handle this).
 
 ```sh
 docker exec -it vscode-server-1 bash
