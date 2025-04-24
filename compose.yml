@@ -15,7 +15,8 @@ services:
     build:
       context: .
       dockerfile: "Dockerfile"
-    command: ["tunnel"]
+    #command: ["tunnel"]
+    command: ["tunnel", "--accept-server-license-terms", "--log-info", "--name", "${VSCODE_HOSTNAME}"]
     restart: unless-stopped
     container_name: vscode-tunnel-1
     volumes:
